@@ -14,6 +14,7 @@ sudo apt-get install -y \
 	libdrm-dev \
 	libdw-dev \
 	libglib2.0-dev \
+	libjson-c-dev \
 	libkmod-dev \
 	libpciaccess-dev \
 	libpixman-1-dev \
