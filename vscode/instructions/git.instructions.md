@@ -4,7 +4,9 @@ applyTo: '**/*'
 ---
 
 **git:**
-* Write short, concise, and clear commit messages.
+* Every commit MUST have both a subject line and a description body. Never use a subject-only commit.
+* Write short, concise, and clear subject and commit description (body).
+* The body should explain *what* changed and *why*, not just restate the subject.
 * Use imperative mood (e.g., "Fix bug" not "Fixed bug" or "Fixes bug").
 * Follow the 50/72 rule: subject line ≤ 50 characters, body lines wrapped at 72 characters.
 * Separate subject from body with a blank line.
