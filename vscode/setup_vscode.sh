@@ -15,8 +15,14 @@ install_global_instructions() {
 	mkdir -p "${PROMPTS_DIR}"
 
 	for f in "${files[@]}"; do
-		cp "${SCRIPT_DIR}/instructions/${f}" "${PROMPTS_DIR}/"
-		echo "Installed ${f} -> ${PROMPTS_DIR}/${f}"
+		local src="${SCRIPT_DIR}/instructions/${f}"
+		local dst="${PROMPTS_DIR}/${f}"
+		if [[ ! -f "${dst}" ]] || ! diff -q "${src}" "${dst}" > /dev/null 2>&1; then
+			cp "${src}" "${dst}"
+			echo "Updated ${f} -> ${dst}"
+		else
+			echo "Unchanged ${f}"
+		fi
 	done
 }
 
@@ -31,8 +37,14 @@ install_igt_instructions() {
 
 	for igt_dir in "${igt_dirs[@]}"; do
 		mkdir -p "${igt_dir}/.github/instructions"
-		cp "${SCRIPT_DIR}/instructions/igt.instructions.md" "${igt_dir}/.github/instructions/igt.instructions.md"
-		echo "Installed igt.instructions.md -> ${igt_dir}/.github/instructions/igt.instructions.md"
+		local src="${SCRIPT_DIR}/instructions/igt.instructions.md"
+		local dst="${igt_dir}/.github/instructions/igt.instructions.md"
+		if [[ ! -f "${dst}" ]] || ! diff -q "${src}" "${dst}" > /dev/null 2>&1; then
+			cp "${src}" "${dst}"
+			echo "Updated igt.instructions.md -> ${dst}"
+		else
+			echo "Unchanged igt.instructions.md in ${igt_dir}"
+		fi
 
 		local exclude_file="${igt_dir}/.git/info/exclude"
 		if [[ -f "${exclude_file}" ]] && ! grep -qxF '.github/' "${exclude_file}"; then
