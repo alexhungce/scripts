@@ -23,7 +23,9 @@ RUN apt-get update && apt-get install -y \
     libdrm-dev \
     libdw-dev \
     libglib2.0-dev \
+    libjson-c-dev \
     libkmod-dev \
+    libpci-dev \
     libpciaccess-dev \
     libpixman-1-dev \
     libproc2-dev \
