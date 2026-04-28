@@ -4,6 +4,18 @@ shopt -s -o nounset
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROMPTS_DIR="${HOME}/.config/Code/User/prompts"
 
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+log_unchange() {
+	printf "%b%s%b\n" "${GREEN}" "$*" "${NC}"
+}
+
+log_change() {
+	printf "%b%s%b\n" "${RED}" "$*" "${NC}"
+}
+
 install_global_instructions() {
 	local files=(
 		bash.instructions.md
@@ -19,9 +31,9 @@ install_global_instructions() {
 		local dst="${PROMPTS_DIR}/${f}"
 		if [[ ! -f "${dst}" ]] || ! diff -q "${src}" "${dst}" > /dev/null 2>&1; then
 			cp "${src}" "${dst}"
-			echo "Updated ${f} -> ${dst}"
+			log_change "Updated ${f} -> ${dst}"
 		else
-			echo "Unchanged ${f}"
+			log_unchange "Unchanged ${f}"
 		fi
 	done
 }
@@ -31,7 +43,7 @@ install_igt_instructions() {
 	mapfile -t igt_dirs < <(find "${HOME}/src" -maxdepth 3 -type d -name "igt-gpu-tools*" 2>/dev/null)
 
 	if [[ ${#igt_dirs[@]} -eq 0 ]]; then
-		echo "ERROR: no igt-gpu-tools* directories found under ${HOME}/src" >&2
+		log_change "ERROR: no igt-gpu-tools* directories found under ${HOME}/src" >&2
 		return 1
 	fi
 
@@ -41,15 +53,15 @@ install_igt_instructions() {
 		local dst="${igt_dir}/.github/instructions/igt.instructions.md"
 		if [[ ! -f "${dst}" ]] || ! diff -q "${src}" "${dst}" > /dev/null 2>&1; then
 			cp "${src}" "${dst}"
-			echo "Updated igt.instructions.md -> ${dst}"
+			log_change "Updated igt.instructions.md -> ${dst}"
 		else
-			echo "Unchanged igt.instructions.md in ${igt_dir}"
+			log_unchange "Unchanged igt.instructions.md in ${igt_dir}"
 		fi
 
 		local exclude_file="${igt_dir}/.git/info/exclude"
 		if [[ -f "${exclude_file}" ]] && ! grep -qxF '.github/' "${exclude_file}"; then
 			echo '.github/' >> "${exclude_file}"
-			echo "Added .github/ to ${exclude_file}"
+			log_change "Added .github/ to ${exclude_file}"
 		fi
 	done
 }
