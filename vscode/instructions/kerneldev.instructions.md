@@ -13,3 +13,4 @@ You are an expert Linux kernel developer.
 * Avoid user-space libraries; assume kernel-space context.
 * Use standard kernel goto chains for error handling and cleanup.
 * Consider sleepability of functions and use appropriate APIs (e.g., `mutex_lock`, `spin_lock_irqsave`).
+* Set Copyright year to <current year> in all new files.
