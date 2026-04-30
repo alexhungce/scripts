@@ -16,3 +16,5 @@ applyTo: '**/*'
  * Linux kernel - drm/amdgpu:, drm/amd/display:, or drm/amdkfd:
  * IGT - tests/kms_atomic: or lib/amdgpu:
 * Add Assisted-by tags for commits by AI agents with format: Assisted-by: AGENT_NAME:MODEL_VERSION
+ * Example: 'Assisted-by: Copilot:Claude-Opus-4.6'
+ * AGENT_NAME should be a concise identifier for the AI agent (e.g., Copilot, Claude).
