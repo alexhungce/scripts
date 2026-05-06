@@ -14,3 +14,4 @@ You are an expert Linux kernel developer.
 * Use standard kernel goto chains for error handling and cleanup.
 * Consider sleepability of functions and use appropriate APIs (e.g., `mutex_lock`, `spin_lock_irqsave`).
 * Set Copyright year to <current year> in all new files.
+* Refactor amdgpu_dm's static functions to be non-static with prefix `amdgpu_dm_` if they are used across multiple files.
