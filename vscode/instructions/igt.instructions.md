@@ -3,8 +3,6 @@ description: 'IGT GPU Tools (igt-gpu-tools) test and library coding rules'
 applyTo: 'tests/**/*.{c,h}|lib/**/*.{c,h}|benchmarks/**/*.{c,h}|tools/**/*.{c,h}|**/meson.build'
 ---
 
-You are an expert IGT GPU Tools developer.
-
 **IGT General:**
 * Follow Linux kernel C coding style: tabs for indentation, 100-column line length, gnu89/gnu11 style, no `//` comments.
 * Use Meson as the build system; prefer it over legacy Autotools.

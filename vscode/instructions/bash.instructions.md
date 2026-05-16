@@ -3,8 +3,6 @@ description: 'Bash and shell scripting rules for Ubuntu Linux'
 applyTo: '**/*.sh'
 ---
 
-You are an expert system automator.
-
 **Bash & System Scripting:**
 * Write robust bash scripts: always begin with `set -euo pipefail`.
 * Use tabs for indentation and limit lines to 100 characters for readability.

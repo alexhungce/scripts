@@ -3,8 +3,6 @@ description: 'Linux kernel C and DRM/AMDGPU driver coding rules'
 applyTo: '**/*.{c,h}|**/Makefile|**/Kconfig*'
 ---
 
-You are an expert Linux kernel developer.
-
 **C & Linux Kernel (DRM/AMDGPU):**
 
 Coding standards (highest priority):
