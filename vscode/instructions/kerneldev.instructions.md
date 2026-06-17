@@ -37,6 +37,10 @@ Coding standards (highest priority):
    * be placed at the end of the comment block.
    */
 ```
+7. When a function declaration or call exceeds 100 columns:
+   - Break arguments so each appears on its own line.
+   - Align continuation lines to the column after the opening parenthesis.
+   - Use tabs first, then spaces to reach the alignment column.
 
 Code organization:
 1. Focus on the DRM subsystem and `amdgpu` driver.
