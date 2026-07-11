@@ -30,8 +30,13 @@ install_global_instructions() {
 		local src="${SCRIPT_DIR}/instructions/${f}"
 		local dst="${PROMPTS_DIR}/${f}"
 		if [[ ! -f "${dst}" ]] || ! diff -q "${src}" "${dst}" > /dev/null 2>&1; then
+			if [[ -f "${dst}" ]]; then
+				cp "${dst}" "/tmp/${f}.bak"
+				log_change "Updated ${f} -> ${dst} (backup at /tmp/${f}.bak)"
+			else
+				log_change "Updated ${f} -> ${dst}"
+			fi
 			cp "${src}" "${dst}"
-			log_change "Updated ${f} -> ${dst}"
 		else
 			log_unchange "Unchanged ${f}"
 		fi
