@@ -6,7 +6,18 @@ applyTo: '**/*.{c,h}|**/Makefile|**/Kconfig*'
 **C & Linux Kernel (DRM/AMDGPU):**
 
 Coding standards (highest priority):
-1. Strictly follow Linux kernel C coding standards: tabs for indentation, 100-column line length, gnu89/gnu11 style, no `//` comments.
+1. Strictly follow Linux kernel C coding standards:
+   - tabs for indentation
+   - 100-column line length
+   - no trailing whitespace
+   - gnu89/gnu11 style, no `//` comments.
+   - no typedefs for structs, unions, or enums; use `struct foo` directly
+   - exported symbol names fewer than 55 characters (modpost limit)
+   - K&R brace style
+   - `if (x)` vs `foo(x)` spacing (space before `(` for keywords, none for functions)
+   - spaces around binary operators (`a = b + c`)
+   - no parentheses around return value: `return x;` not `return(x);`
+   - use `NULL` for null pointers, `bool` for boolean values
 2. Use kernel-native APIs and macros (e.g., `kzalloc`, `drm_err`).
 3. Avoid user-space libraries; assume kernel-space context.
 4. Use standard kernel goto chains for error handling and cleanup.
