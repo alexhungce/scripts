@@ -1,5 +1,5 @@
 #!/bin/bash
-shopt -s -o nounset
+set -euo pipefail
 
 # install necessary packages
 sudo apt-get update
@@ -31,10 +31,12 @@ sudo apt-get install -y \
 	protobuf-compiler
 
 
-cd $HOME
+cd "$HOME"
 
-[ -d src ] || mkdir src
-cd src
-
-git clone https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-cd igt-gpu-tools && CC='ccache gcc' meson setup build && ninja -C build
+if [[ -d src/igt-gpu-tools ]]; then
+	git -C src/igt-gpu-tools pull --ff-only
+else
+	mkdir -p src
+	git clone https://gitlab.freedesktop.org/drm/igt-gpu-tools.git src/igt-gpu-tools
+fi
+cd src/igt-gpu-tools && CC='ccache gcc' meson setup build && ninja -C build
