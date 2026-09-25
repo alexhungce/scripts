@@ -6,6 +6,7 @@ sudo apt-get update
 sudo apt-get install -y \
 	build-essential \
 	bison \
+	ccache \
 	flex \
 	git \
 	meson \
@@ -36,4 +37,4 @@ cd $HOME
 cd src
 
 git clone https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-cd igt-gpu-tools && meson setup build && ninja -C build
+cd igt-gpu-tools && CC='ccache gcc' meson setup build && ninja -C build
