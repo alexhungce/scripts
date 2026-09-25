@@ -45,7 +45,7 @@ install_global_instructions() {
 
 install_igt_instructions() {
 	local -a igt_dirs
-	mapfile -t igt_dirs < <(find "${HOME}/src" -maxdepth 3 -type d -name "igt-gpu-tools*" 2>/dev/null)
+	mapfile -t igt_dirs < <(find -H "${HOME}/src" -maxdepth 3 -type d -name "igt-gpu-tools*" 2>/dev/null)
 
 	if [[ ${#igt_dirs[@]} -eq 0 ]]; then
 		log_change "ERROR: no igt-gpu-tools* directories found under ${HOME}/src" >&2
